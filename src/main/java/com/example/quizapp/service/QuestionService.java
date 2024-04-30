@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,8 @@ public class QuestionService {
 
     public ResponseEntity<Question> create(Question question) {
         try {
-            return ResponseEntity.ok(repository.save(question));
+            Question saved = repository.save(question);
+            return new ResponseEntity<>(saved, HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();

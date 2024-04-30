@@ -16,4 +16,7 @@ public interface QuestionRepo extends JpaRepository<Question, Long>{
 
     @Query("SELECT q FROM Question q WHERE LOWER(q.category) like LOWER(%?1%) ORDER BY id ASC")
     List<Question> findByCategory(String category);
+
+    @Query(value = "SELECT * FROM question WHERE category = ?1 ORDER BY RANDOM() LIMIT ?2", nativeQuery = true)
+    List<Question> findRandomQuestions(String category, int limit);
 }
