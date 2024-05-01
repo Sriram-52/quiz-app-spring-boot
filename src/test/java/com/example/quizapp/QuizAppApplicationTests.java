@@ -8,6 +8,7 @@ class QuizAppApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Test is working");
 	}
 
 }
